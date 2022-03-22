@@ -18,11 +18,16 @@ const App = () => {
     startService();
   }, []);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if(!ref.current) {
       return;
     }
-    console.log(ref.current)
+    const result = await ref.current.transform(input, {
+      loader: 'jsx',
+      target: 'es2015'
+    }); 
+
+    setCode(result.code);
   };
 
   return (
